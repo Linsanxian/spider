@@ -2,3 +2,5 @@ node_modules/
 *.mp4
 spider-feapder/data.json
 ixigua/data.json
+optimizations/data.csv
+data.csv
