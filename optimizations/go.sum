@@ -1,0 +1,6 @@
+github.com/go-sql-driver/mysql v1.7.0 h1:ueSltNNllEqE3qcWBTD0iQd3IpL/6U+mJxLkazJ7YPc=
+github.com/go-sql-driver/mysql v1.7.0/go.mod h1:OXbVy3sEdcQ2Doequ6Z5BW6fXNQTmx+9S1MCJN5yJMI=
+github.com/xluohome/phonedata v0.0.0-20230225041646-934554285b90 h1:8eTyHFBGdbOcAhvdY2OF5LIT/mZwn2MoPZwY1Cr5QaY=
+github.com/xluohome/phonedata v0.0.0-20230225041646-934554285b90/go.mod h1:xLEBvbUFvuBHRWeV/SNefGARR5QedFRkThwnodnmCKw=
+github.com/zerozh/ngender-go v0.0.0-20190306102252-fea1a16c8010 h1:mFXTeDGc3pq2QzdNTgSQtzvz/EAehb1WaoppV0Z/tk8=
+github.com/zerozh/ngender-go v0.0.0-20190306102252-fea1a16c8010/go.mod h1:6nGj6WOZkO84DwzHUUBOuoWzewqIlcjgo7CAWhWZhYI=
