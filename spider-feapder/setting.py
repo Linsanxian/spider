@@ -40,8 +40,8 @@ COLLECTOR_TASK_COUNT = 2  # 每次获取任务数量
 # # SPIDER
 SPIDER_THREAD_COUNT = 2  # 爬虫并发数
 # # 下载时间间隔 单位秒。 支持随机 如 SPIDER_SLEEP_TIME = [2, 5] 则间隔为 2~5秒之间的随机数，包含2和5
-SPIDER_SLEEP_TIME = [2,5]
-SPIDER_MAX_RETRY_TIMES = 100  # 每个请求最大重试次数
+SPIDER_SLEEP_TIME = [1,5]
+SPIDER_MAX_RETRY_TIMES = 20  # 每个请求最大重试次数
 # KEEP_ALIVE = False  # 爬虫是否常驻
 
 # # 浏览器渲染
@@ -101,7 +101,7 @@ RESPONSE_CACHED_USED = False  # 是否使用缓存 补采数据时可设置为Tr
 # USE_SESSION = True
 #
 # # 去重
-ITEM_FILTER_ENABLE = True  # item 去重
+ITEM_FILTER_ENABLE = False  # item 去重
 REQUEST_FILTER_ENABLE = True  # request 去重
 # ITEM_FILTER_SETTING = dict(
 #     filter_type=1  # 永久去重（BloomFilter） = 1 、内存去重（MemoryFilter） = 2、 临时去重（ExpireFilter）= 3
