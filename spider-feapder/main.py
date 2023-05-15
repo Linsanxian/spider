@@ -10,6 +10,8 @@ Created on 2023-04-23 14:26:05
 from feapder import ArgumentParser
 
 from spiders import ixigua
+from spiders import xhs
+
 
 def crawl_ixigua():
     """
@@ -18,20 +20,34 @@ def crawl_ixigua():
     spider = ixigua.Ixigua(redis_key="ixigua:video")
     spider.start()
 
+
+def crawl_xhs():
+    """
+    Spider爬虫
+    """
+    spider = xhs.Xhs(redis_key="xhs:info")
+    spider.start()
+
+
 if __name__ == "__main__":
-    parser = ArgumentParser(description="西瓜视频爬虫")
+    parser = ArgumentParser(description="爬虫")
 
     parser.add_argument(
         "--crawl_ixigua", action="store_true", help="西瓜视频爬虫", function=crawl_ixigua
     )
+
     parser.add_argument(
-        "--crawl_xxx",
-        type=int,
-        nargs=1,
-        help="西瓜视频爬虫",
-        choices=[1, 2, 3],
-        function=crawl_ixigua,
+        "--crawl_xhs", action="store_true", help="小红书评论采集", function=crawl_xhs
     )
+    
+    # parser.add_argument(
+    #     "--crawl_xhs",
+    #     type=int,
+    #     nargs=1,
+    #     help="小红书评论采集, 1:下发任务,2:采集,3:重置任务",
+    #     choices=[1, 2, 3],
+    #     function=crawl_xhs,
+    # )
 
     parser.start()
 
@@ -43,4 +59,3 @@ if __name__ == "__main__":
     # 1. 下发任务：python main.py --crawl_xxx 1
     # 2. 采集：python main.py --crawl_xxx 2
     # 3. 重置任务：python main.py --crawl_xxx 3
-

@@ -21,7 +21,7 @@
 # ip:port 多个可写为列表或者逗号隔开 如 ip1:port1,ip2:port2 或 ["ip1:port1", "ip2:port2"]
 REDISDB_IP_PORTS = "localhost:6379"
 REDISDB_USER_PASS = ""
-REDISDB_DB = 1
+REDISDB_DB = 0
 # # 适用于redis哨兵模式
 # REDISDB_SERVICE_NAME = ""
 #
@@ -35,13 +35,13 @@ REDISDB_DB = 1
 #
 # # 爬虫相关
 # COLLECTOR
-COLLECTOR_TASK_COUNT = 2  # 每次获取任务数量
+COLLECTOR_TASK_COUNT = 1  # 每次获取任务数量
 #
 # # SPIDER
-SPIDER_THREAD_COUNT = 2  # 爬虫并发数
+SPIDER_THREAD_COUNT = 5  # 爬虫并发数
 # # 下载时间间隔 单位秒。 支持随机 如 SPIDER_SLEEP_TIME = [2, 5] 则间隔为 2~5秒之间的随机数，包含2和5
-SPIDER_SLEEP_TIME = [1,5]
-SPIDER_MAX_RETRY_TIMES = 20  # 每个请求最大重试次数
+SPIDER_SLEEP_TIME = [1, 2]
+SPIDER_MAX_RETRY_TIMES = 3  # 每个请求最大重试次数
 # KEEP_ALIVE = False  # 爬虫是否常驻
 
 # # 浏览器渲染

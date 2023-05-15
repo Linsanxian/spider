@@ -28,12 +28,12 @@ class FlickrPhotos():
         
         return headers
     
-    def search_options(self, tags, per_page=250, min_taken_date=None, max_taken_date=None):
+    def search_options(self, tags, bbox, per_page=250, min_taken_date=None, max_taken_date=None):
         search_params = {
             'tags': tags,
             'has_geo': 1,
             'extras': 'geo,url_z,date_taken,owner_name',
-            # 'bbox': bbox,
+            'bbox': bbox,
             'per_page': per_page,
             'min_taken_date': min_taken_date,
             'max_taken_date': max_taken_date
@@ -182,13 +182,13 @@ if __name__ == '__main__':
     flickr = FlickrPhotos(api_key, api_secret)
 
     ## 起始日期和结束日期
-    start_date = "2022-01-01"
-    end_date = "2022-12-31"
+    start_date = sys.argv[1]
+    end_date = sys.argv[2]
 
     date_range = generate_monthly_date_range(start_date, end_date)
     for date in date_range:
         min_taken_date = date['start_date']
         max_taken_date = date['end_date']
-        search_params = flickr.search_options(tags='Wuhan', min_taken_date=min_taken_date, max_taken_date=max_taken_date)
+        search_params = flickr.search_options(tags='Taiwan', bbox=bbox, min_taken_date=min_taken_date, max_taken_date=max_taken_date)
         flickr.get_photos(**search_params)
         
