@@ -10,8 +10,9 @@ Created on 2023-04-23 14:26:05
 from feapder import ArgumentParser
 
 from spiders import ixigua
-from spiders import xhs
-
+# from spiders import xhs
+from spiders import tb
+from spiders import jd
 
 def crawl_ixigua():
     """
@@ -21,11 +22,18 @@ def crawl_ixigua():
     spider.start()
 
 
-def crawl_xhs():
+def crawl_tb():
     """
-    Spider爬虫
+    淘宝爬虫
     """
-    spider = xhs.Xhs(redis_key="xhs:info")
+    spider = tb.Tb(redis_key="tb:info")
+    spider.start()
+    
+def crawl_jd():
+    """
+    京东爬虫
+    """
+    spider = jd.Jd(redis_key="jd:info")
     spider.start()
 
 
@@ -37,9 +45,13 @@ if __name__ == "__main__":
     )
 
     parser.add_argument(
-        "--crawl_xhs", action="store_true", help="小红书评论采集", function=crawl_xhs
+        "--crawl_tb", action="store_true", help="淘宝评论采集", function=crawl_tb
     )
     
+    parser.add_argument(
+        "--crawl_jd", action="store_true", help="京东评论采集", function=crawl_jd
+    )    
+
     # parser.add_argument(
     #     "--crawl_xhs",
     #     type=int,
