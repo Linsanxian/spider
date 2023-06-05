@@ -3,12 +3,12 @@
 # import os
 # import sys
 #
-# # MYSQL
-# MYSQL_IP = "localhost"
-# MYSQL_PORT = 3306
-# MYSQL_DB = ""
-# MYSQL_USER_NAME = ""
-# MYSQL_USER_PASS = ""
+# MYSQL
+MYSQL_IP = "localhost"
+MYSQL_PORT = 3306
+MYSQL_DB = "spider"
+MYSQL_USER_NAME = "root"
+MYSQL_USER_PASS = ""
 #
 # # MONGODB
 # MONGO_IP = "localhost"
@@ -21,7 +21,7 @@
 # ip:port 多个可写为列表或者逗号隔开 如 ip1:port1,ip2:port2 或 ["ip1:port1", "ip2:port2"]
 REDISDB_IP_PORTS = "localhost:6379"
 REDISDB_USER_PASS = ""
-REDISDB_DB = 0
+REDISDB_DB = 1
 # # 适用于redis哨兵模式
 # REDISDB_SERVICE_NAME = ""
 #
