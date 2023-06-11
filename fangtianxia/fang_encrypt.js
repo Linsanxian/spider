@@ -20,10 +20,10 @@ function biFromDecimal(n) {
         i = new BigInt;
     else {
         for (f = n.length - t,
-                 r = f % dpl10,
-             r == 0 && (r = dpl10),
-                 i = biFromNumber(Number(n.substr(t, r))),
-                 t += r; t < n.length;)
+            r = f % dpl10,
+            r == 0 && (r = dpl10),
+            i = biFromNumber(Number(n.substr(t, r))),
+            t += r; t < n.length;)
             i = biAdd(biMultiply(i, lr10), biFromNumber(Number(n.substr(t, dpl10)))),
                 t += dpl10;
         i.isNeg = u
@@ -41,8 +41,8 @@ function biCopy(n) {
 function biFromNumber(n) {
     var t = new BigInt, i;
     for (t.isNeg = n < 0,
-             n = Math.abs(n),
-             i = 0; n > 0;)
+        n = Math.abs(n),
+        i = 0; n > 0;)
         t.digits[i++] = n & maxDigitVal,
             n = Math.floor(n / biRadix);
     return t
@@ -57,8 +57,8 @@ function reverseStr(n) {
 function biToString(n, t) {
     var r = new BigInt, i, u;
     for (r.digits[0] = t,
-             i = biDivideModulo(n, r),
-             u = hexatrigesimalToChar[i[1].digits[0]]; biCompare(i[0], bigZero) == 1;)
+        i = biDivideModulo(n, r),
+        u = hexatrigesimalToChar[i[1].digits[0]]; biCompare(i[0], bigZero) == 1;)
         i = biDivideModulo(i[0], r),
             digit = i[1].digits[0],
             u += hexatrigesimalToChar[i[1].digits[0]];
@@ -68,8 +68,8 @@ function biToString(n, t) {
 function biToDecimal(n) {
     var i = new BigInt, t, r;
     for (i.digits[0] = 10,
-             t = biDivideModulo(n, i),
-             r = String(t[1].digits[0]); biCompare(t[0], bigZero) == 1;)
+        t = biDivideModulo(n, i),
+        r = String(t[1].digits[0]); biCompare(t[0], bigZero) == 1;)
         t = biDivideModulo(t[0], i),
             r += String(t[1].digits[0]);
     return (n.isNeg ? "-" : "") + reverseStr(r)
@@ -115,7 +115,7 @@ function biFromHex(n) {
 function biFromString(n, t) {
     var f = n.charAt(0) == "-", e = f ? 1 : 0, i = new BigInt, r = new BigInt, u;
     for (r.digits[0] = 1,
-             u = n.length - 1; u >= e; u--) {
+        u = n.length - 1; u >= e; u--) {
         var o = n.charCodeAt(u)
             , s = charToHex(o)
             , h = biMultiplyDigit(r, s);
@@ -138,8 +138,8 @@ function biAdd(n, t) {
             t.isNeg = !t.isNeg;
     else {
         for (r = new BigInt,
-                 u = 0,
-                 i = 0; i < n.digits.length; ++i)
+            u = 0,
+            i = 0; i < n.digits.length; ++i)
             f = n.digits[i] + t.digits[i] + u,
                 r.digits[i] = f % biRadix,
                 u = Number(f >= biRadix);
@@ -156,18 +156,18 @@ function biSubtract(n, t) {
             t.isNeg = !t.isNeg;
     else {
         for (r = new BigInt,
-                 u = 0,
-                 i = 0; i < n.digits.length; ++i)
+            u = 0,
+            i = 0; i < n.digits.length; ++i)
             f = n.digits[i] - t.digits[i] + u,
                 r.digits[i] = f % biRadix,
-            r.digits[i] < 0 && (r.digits[i] += biRadix),
+                r.digits[i] < 0 && (r.digits[i] += biRadix),
                 u = 0 - Number(f < 0);
         if (u == -1) {
             for (u = 0,
-                     i = 0; i < n.digits.length; ++i)
+                i = 0; i < n.digits.length; ++i)
                 f = 0 - r.digits[i] + u,
                     r.digits[i] = f % biRadix,
-                r.digits[i] < 0 && (r.digits[i] += biRadix),
+                    r.digits[i] < 0 && (r.digits[i] += biRadix),
                     u = 0 - Number(f < 0);
             r.isNeg = !n.isNeg
         } else
@@ -194,9 +194,9 @@ function biNumBits(n) {
 function biMultiply(n, t) {
     for (var i = new BigInt, u, o = biHighIndex(n), s = biHighIndex(t), e, f, r = 0; r <= s; ++r) {
         for (u = 0,
-                 f = r,
-                 j = 0; j <= o; ++j,
-                 ++f)
+            f = r,
+            j = 0; j <= o; ++j,
+            ++f)
             e = i.digits[f] + n.digits[j] * t.digits[r] + u,
                 i.digits[f] = e & maxDigitVal,
                 u = e >>> biRadixBits;
@@ -209,9 +209,9 @@ function biMultiply(n, t) {
 function biMultiplyDigit(n, t) {
     var u, r, f, i;
     for (result = new BigInt,
-             u = biHighIndex(n),
-             r = 0,
-             i = 0; i <= u; ++i)
+        u = biHighIndex(n),
+        r = 0,
+        i = 0; i <= u; ++i)
         f = result.digits[i] + n.digits[i] * t + r,
             result.digits[i] = f & maxDigitVal,
             r = f >>> biRadixBits;
@@ -228,11 +228,11 @@ function arrayCopy(n, t, i, r, u) {
 function biShiftLeft(n, t) {
     var e = Math.floor(t / bitsPerDigit), i = new BigInt, u, o, r, f;
     for (arrayCopy(n.digits, 0, i.digits, e, i.digits.length - e),
-             u = t % bitsPerDigit,
-             o = bitsPerDigit - u,
-             r = i.digits.length - 1,
-             f = r - 1; r > 0; --r,
-             --f)
+        u = t % bitsPerDigit,
+        o = bitsPerDigit - u,
+        r = i.digits.length - 1,
+        f = r - 1; r > 0; --r,
+        --f)
         i.digits[r] = i.digits[r] << u & maxDigitVal | (i.digits[f] & highBitMasks[u]) >>> o;
     return i.digits[0] = i.digits[r] << u & maxDigitVal,
         i.isNeg = n.isNeg,
@@ -242,11 +242,11 @@ function biShiftLeft(n, t) {
 function biShiftRight(n, t) {
     var e = Math.floor(t / bitsPerDigit), i = new BigInt, u, o, r, f;
     for (arrayCopy(n.digits, e, i.digits, 0, n.digits.length - e),
-             u = t % bitsPerDigit,
-             o = bitsPerDigit - u,
-             r = 0,
-             f = r + 1; r < i.digits.length - 1; ++r,
-             ++f)
+        u = t % bitsPerDigit,
+        o = bitsPerDigit - u,
+        r = 0,
+        f = r + 1; r < i.digits.length - 1; ++r,
+        ++f)
         i.digits[r] = i.digits[r] >>> u | (i.digits[f] & lowBitMasks[u]) << o;
     return i.digits[i.digits.length - 1] >>>= u,
         i.isNeg = n.isNeg,
@@ -290,20 +290,20 @@ function biDivideModulo(n, t) {
             i = biSubtract(t, n),
             n.isNeg = !0,
             t.isNeg = v) : (r = new BigInt,
-            i = biCopy(n)),
+                i = biCopy(n)),
             [r, i];
     for (r = new BigInt,
-             i = n,
-             u = Math.ceil(s / bitsPerDigit) - 1,
-             e = 0; t.digits[u] < biHalfRadix;)
+        i = n,
+        u = Math.ceil(s / bitsPerDigit) - 1,
+        e = 0; t.digits[u] < biHalfRadix;)
         t = biShiftLeft(t, 1),
             ++e,
             ++s,
             u = Math.ceil(s / bitsPerDigit) - 1;
     for (i = biShiftLeft(i, e),
-             a += e,
-             h = Math.ceil(a / bitsPerDigit) - 1,
-             o = biMultiplyByRadixPower(t, h - u); biCompare(i, o) != -1;)
+        a += e,
+        h = Math.ceil(a / bitsPerDigit) - 1,
+        o = biMultiplyByRadixPower(t, h - u); biCompare(i, o) != -1;)
         ++r.digits[h - u],
             i = biSubtract(i, o);
     for (f = h; f > u; --f) {
@@ -313,8 +313,8 @@ function biDivideModulo(n, t) {
             , l = u >= t.digits.length ? 0 : t.digits[u]
             , k = u - 1 >= t.digits.length ? 0 : t.digits[u - 1];
         for (r.digits[f - u - 1] = c == l ? maxDigitVal : Math.floor((c * biRadix + w) / l),
-                 y = r.digits[f - u - 1] * (l * biRadix + k),
-                 p = c * biRadixSquared + (w * biRadix + b); y > p;)
+            y = r.digits[f - u - 1] * (l * biRadix + k),
+            p = c * biRadixSquared + (w * biRadix + b); y > p;)
             --r.digits[f - u - 1],
                 y = r.digits[f - u - 1] * (l * biRadix | k),
                 p = c * biRadix * biRadix + (w * biRadix + b);
@@ -325,10 +325,10 @@ function biDivideModulo(n, t) {
     }
     return i = biShiftRight(i, e),
         r.isNeg = n.isNeg != v,
-    n.isNeg && (r = v ? biAdd(r, bigOne) : biSubtract(r, bigOne),
-        t = biShiftRight(t, e),
-        i = biSubtract(t, i)),
-    i.digits[0] == 0 && biHighIndex(i) == 0 && (i.isNeg = !1),
+        n.isNeg && (r = v ? biAdd(r, bigOne) : biSubtract(r, bigOne),
+            t = biShiftRight(t, e),
+            i = biSubtract(t, i)),
+        i.digits[0] == 0 && biHighIndex(i) == 0 && (i.isNeg = !1),
         [r, i]
 }
 
@@ -348,7 +348,7 @@ function biPow(n, t) {
     for (var r = bigOne, i = n; ;) {
         if ((t & 1) != 0 && (r = biMultiply(r, i)),
             t >>= 1,
-        t == 0)
+            t == 0)
             break;
         i = biMultiply(i, i)
     }
@@ -359,7 +359,7 @@ function biPowMod(n, t, i) {
     for (var f = bigOne, u = n, r = t; ;) {
         if ((r.digits[0] & 1) != 0 && (f = biMultiplyMod(f, u, i)),
             r = biShiftRight(r, 1),
-        r.digits[0] == 0 && biHighIndex(r) == 0)
+            r.digits[0] == 0 && biHighIndex(r) == 0)
             break;
         u = biMultiplyMod(u, u, i)
     }
@@ -384,7 +384,7 @@ function BarrettMu_modulo(n) {
         e = biModuloByRadixPower(n, this.k + 1), o = biMultiply(f, this.modulus),
         s = biModuloByRadixPower(o, this.k + 1), t = biSubtract(e, s), i;
     for (t.isNeg && (t = biAdd(t, this.bkplus1)),
-             i = biCompare(t, this.modulus) >= 0; i;)
+        i = biCompare(t, this.modulus) >= 0; i;)
         t = biSubtract(t, this.modulus),
             i = biCompare(t, this.modulus) >= 0;
     return t
@@ -398,11 +398,11 @@ function BarrettMu_multiplyMod(n, t) {
 function BarrettMu_powMod(n, t) {
     var u = new BigInt, r, i;
     for (u.digits[0] = 1,
-             r = n,
-             i = t; ;) {
+        r = n,
+        i = t; ;) {
         if ((i.digits[0] & 1) != 0 && (u = this.multiplyMod(u, r)),
             i = biShiftRight(i, 1),
-        i.digits[0] == 0 && biHighIndex(i) == 0)
+            i.digits[0] == 0 && biHighIndex(i) == 0)
             break;
         r = this.multiplyMod(r, r)
     }
@@ -431,21 +431,21 @@ function encryptedString(n, t) {
         a[r] = t.charCodeAt(r),
             r++;
     for (e = a.length,
-             o = "",
-             r = 0; r < e; r += n.chunkSize) {
+        o = "",
+        r = 0; r < e; r += n.chunkSize) {
         for (c = new BigInt,
-                 s = 0,
-                 f = r + n.chunkSize > e ? e % n.chunkSize : n.chunkSize,
-                 u = [],
-                 i = 0; i < f; i++)
+            s = 0,
+            f = r + n.chunkSize > e ? e % n.chunkSize : n.chunkSize,
+            u = [],
+            i = 0; i < f; i++)
             u[i] = a[r + f - 1 - i];
         for (u[f] = 0,
-                 v = Math.max(8, n.digitSize - 3 - f),
-                 i = 0; i < v; i++)
+            v = Math.max(8, n.digitSize - 3 - f),
+            i = 0; i < v; i++)
             u[f + 1 + i] = Math.floor(Math.random() * 254) + 1;
         for (u[n.digitSize - 2] = 2,
-                 u[n.digitSize - 1] = 0,
-                 h = 0; h < n.digitSize; ++s)
+            u[n.digitSize - 1] = 0,
+            h = 0; h < n.digitSize; ++s)
             c.digits[s] = u[h++],
                 c.digits[s] += u[h++] << 8;
         l = n.barrett.powMod(c, n.e);
@@ -458,8 +458,8 @@ function encryptedString(n, t) {
 function decryptedString(n, t) {
     for (var e = t.split(" "), i = "", r, u, o, f = 0; f < e.length; ++f)
         for (o = n.radix == 16 ? biFromHex(e[f]) : biFromString(e[f], n.radix),
-                 u = n.barrett.powMod(o, n.d),
-                 r = 0; r <= biHighIndex(u); ++r)
+            u = n.barrett.powMod(o, n.d),
+            r = 0; r <= biHighIndex(u); ++r)
             i += String.fromCharCode(u.digits[r] & 255, u.digits[r] >> 8);
     return i.charCodeAt(i.length - 1) == 0 && (i = i.substring(0, i.length - 1)),
         i
