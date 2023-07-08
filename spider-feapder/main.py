@@ -8,11 +8,19 @@ Created on 2023-04-23 14:26:05
 """
 
 from feapder import ArgumentParser
-
+from feapder import Spider
 from spiders import ixigua
-# from spiders import xhs
-from spiders import tb
-from spiders import jd
+from spiders import gx
+from spiders import jersey_kingdom
+from spiders import buynewjerseys_cc
+
+
+def crawl_jersey_kingdom():
+    """
+    球衣网站爬虫
+    """
+    spider = jersey_kingdom.JerseyKingdom(redis_key="jersey_kingdom:info")
+    spider.start()
 
 def crawl_ixigua():
     """
@@ -21,12 +29,18 @@ def crawl_ixigua():
     spider = ixigua.Ixigua(redis_key="ixigua:video")
     spider.start()
 
-
 def crawl_tb():
     """
     淘宝爬虫
     """
     spider = tb.Tb(redis_key="tb:info")
+    spider.start()
+
+def crawl_gx():
+    """
+    共鞋爬虫
+    """
+    spider = gx.Gx(redis_key="gx:info")
     spider.start()
     
 def crawl_jd():
@@ -36,7 +50,13 @@ def crawl_jd():
     spider = jd.Jd(redis_key="jd:info")
     spider.start()
 
-
+def crawl_buynewjerseys():
+    """
+    www.buynewjerseys.cc
+    """
+    spider = buynewjerseys_cc.buynewjerseys(redis_key="buynewjerseys:info")
+    spider.start()
+    
 if __name__ == "__main__":
     parser = ArgumentParser(description="爬虫")
 
@@ -47,19 +67,20 @@ if __name__ == "__main__":
     parser.add_argument(
         "--crawl_tb", action="store_true", help="淘宝评论采集", function=crawl_tb
     )
-    
+
     parser.add_argument(
         "--crawl_jd", action="store_true", help="京东评论采集", function=crawl_jd
-    )    
+    )
 
-    # parser.add_argument(
-    #     "--crawl_xhs",
-    #     type=int,
-    #     nargs=1,
-    #     help="小红书评论采集, 1:下发任务,2:采集,3:重置任务",
-    #     choices=[1, 2, 3],
-    #     function=crawl_xhs,
-    # )
+    parser.add_argument(
+        "--crawl_gx", action="store_true", help="共鞋采集", function=crawl_gx
+    )    
+    parser.add_argument(
+        "--crawl_qy", action="store_true", help="球衣网采集", function=crawl_jersey_kingdom
+    )
+    parser.add_argument(
+        "--crawl_buynewjerseys", action="store_true", help="www.buynewjerseys.cc", function=crawl_buynewjerseys
+    )
 
     parser.start()
 

@@ -6,3 +6,7 @@ optimizations/data.csv
 data.csv
 chromedriver
 spider-feapder/setting.py
+*.csv
+spider-feapder/spiders/test.py
+spider-feapder/test.py
+*.jpg

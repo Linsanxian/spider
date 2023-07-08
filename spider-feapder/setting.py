@@ -21,7 +21,7 @@ MYSQL_USER_PASS = ""
 # ip:port 多个可写为列表或者逗号隔开 如 ip1:port1,ip2:port2 或 ["ip1:port1", "ip2:port2"]
 REDISDB_IP_PORTS = "localhost:6379"
 REDISDB_USER_PASS = ""
-REDISDB_DB = 1
+REDISDB_DB = 0
 # # 适用于redis哨兵模式
 # REDISDB_SERVICE_NAME = ""
 #
@@ -35,13 +35,13 @@ REDISDB_DB = 1
 #
 # # 爬虫相关
 # COLLECTOR
-COLLECTOR_TASK_COUNT = 5  # 每次获取任务数量
+COLLECTOR_TASK_COUNT = 50  # 每次获取任务数量
 #
 # # SPIDER
-SPIDER_THREAD_COUNT = 5  # 爬虫并发数
+SPIDER_THREAD_COUNT = 50  # 爬虫并发数
 # # 下载时间间隔 单位秒。 支持随机 如 SPIDER_SLEEP_TIME = [2, 5] 则间隔为 2~5秒之间的随机数，包含2和5
-# SPIDER_SLEEP_TIME = [1, 2]
-SPIDER_MAX_RETRY_TIMES = 10  # 每个请求最大重试次数
+# SPIDER_SLEEP_TIME = [2, 5]
+SPIDER_MAX_RETRY_TIMES = 20  # 每个请求最大重试次数
 # KEEP_ALIVE = False  # 爬虫是否常驻
 
 # # 浏览器渲染
@@ -88,8 +88,9 @@ RESPONSE_CACHED_EXPIRE_TIME = 3600  # 缓存时间 秒
 RESPONSE_CACHED_USED = False  # 是否使用缓存 补采数据时可设置为True
 #
 # # 设置代理
-# PROXY_EXTRACT_API = None  # 代理提取API ，返回的代理分割符为\r\n
+# PROXY_EXTRACT_API = ""
 # PROXY_ENABLE = True
+
 #
 # # 随机headers
 # RANDOM_HEADERS = False
@@ -137,8 +138,8 @@ REQUEST_FILTER_SETTING = dict(
 #
 # LOG_NAME = os.path.basename(os.getcwd())
 # LOG_PATH = "log/%s.log" % LOG_NAME  # log存储路径
-# LOG_LEVEL = "DEBUG"
-# LOG_COLOR = True  # 是否带有颜色
+LOG_LEVEL = "INFO"
+LOG_COLOR = True  # 是否带有颜色
 # LOG_IS_WRITE_TO_CONSOLE = True  # 是否打印到控制台
 # LOG_IS_WRITE_TO_FILE = False  # 是否写文件
 # LOG_MODE = "w"  # 写文件的模式
